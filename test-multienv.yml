@@ -11,6 +11,7 @@ pool:
 
 stages: 
   - stage: Build
+    
     jobs:
       - job: Dev
         displayName: Dev
@@ -20,6 +21,7 @@ stages:
           - script: echo "Building in Dev"   
 
   - stage: Test
+    dependsOn: Build
     jobs:
       - job: Test
         displayName: Test
@@ -27,12 +29,17 @@ stages:
           vmImage: ubuntu-latest
         steps:
           - script: echo "Building in Test"   
+        
 
   - stage: Stage
+    dependsOn:
+      - Build
+      - Test
     jobs:
       - job: Preprod
         displayName: Preprod
         pool:
           vmImage: ubuntu-latest
         steps:
-          - script: echo "Building in Preprod"           
+          - script: echo "Building in Preprod"    
+           
