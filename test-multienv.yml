@@ -15,24 +15,24 @@ stages:
       - job: Dev
         displayName: Dev
         pool:
-          name: windows
+          vmImage: ubuntu-latest
         steps:
           - script: echo "Building in Dev"   
 
-  - stage: Build
+  - stage: Test
     jobs:
       - job: Test
         displayName: Test
         pool:
-          name: ubuntu-latest
+          vmImage: ubuntu-latest
         steps:
           - script: echo "Building in Test"   
 
-  - stage: Build
+  - stage: Stage
     jobs:
       - job: Preprod
         displayName: Preprod
         pool:
-          name: ubuntu-latest
+          vmImage: ubuntu-latest
         steps:
           - script: echo "Building in Preprod"           
